@@ -260,13 +260,14 @@ class ReflectionEngine
      *
      * @param string $fileName Name of the file
      * @param string $namespaceName Namespace name
+     * @param string|null $fileContents
      *
      * @return Namespace_
      * @throws ReflectionException
      */
-    public static function parseFileNamespace($fileName, $namespaceName)
+    public static function parseFileNamespace($fileName, $namespaceName, $fileContents = null)
     {
-        $topLevelNodes = self::parseFile($fileName);
+        $topLevelNodes = self::parseFile($fileName, $fileContents);
         // namespaces can be only top-level nodes, so we can scan them directly
         foreach ($topLevelNodes as $topLevelNode) {
             if (!$topLevelNode instanceof Namespace_) {
